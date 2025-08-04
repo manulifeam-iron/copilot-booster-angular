@@ -1,0 +1,35 @@
+<div class="mt-28 pb-10 px-6 lg:ml-24 w-full">
+  <div class="w-full">
+    <span class="text-3xl font-bold mb-6 block">Doctor Details</span>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 w-full"
+    >
+      <div
+      class="card hover:bg-base-200 transition-all bg-base-100 w-full h-full shadow-sm"
+    >
+        <div class="card-body">
+          <h2 class="card-title">
+            {{ doctor.value()?.name }}
+          </h2>
+          <div
+            style="width: 50px; height:4px; background:#00A758; border-radius:2px; margin-bottom:8px;"
+          ></div>
+          <p class="line-clamp-3">
+            Date of Birth: {{ doctor.value()?.dob }}
+          </p>
+          <p class="line-clamp-3">
+            Specialty: {{ doctor.value()?.specialty }}
+          </p>
+          <p class="line-clamp-3">
+            Address:
+            {{ doctor.value()?.address?.street }},
+            {{ doctor.value()?.address?.city }},
+            {{ doctor.value()?.address?.province }}
+            {{ doctor.value()?.address?.postalCode }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer />

@@ -1,0 +1,107 @@
+<header
+  class="w-full py-4 top-0 fixed z-50 border-b border-b-base-300"
+  style="background-color: #424559;"
+>
+  <div class="w-full flex items-center justify-between px-6">
+    <div class="flex items-center gap-x-5 flex-shrink-0">
+      <a
+        class="flex items-center gap-x-3 text-xl group"
+        routerLink="/"
+        style="margin-right: auto;">
+        <img src="/Manulife_reversed_rgb.svg" alt="Logo" class="w-50 h-14" />
+      </a>
+    </div>
+    <!-- Hamburger dropdown for small screens -->
+    <div class="block lg:hidden dropdown dropdown-end">
+      <div tabindex="0" role="button" class="cursor-pointer">
+        <fa-icon [icon]="faBars" style="color: #fff;"></fa-icon>
+      </div>
+      <ul
+        tabindex="0"
+        class="dropdown-content menu rounded-box z-1 w-52 p-2 shadow-sm"
+        style="background-color: #424559;"
+      >
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="hover:underline transition-all text-white flex items-center gap-2"
+          >
+            <fa-icon [icon]="faHome" class="text-white"></fa-icon>
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/doctors"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="hover:underline transition-all text-white flex items-center gap-2"
+          >
+            <fa-icon [icon]="faUserMd" class="text-white"></fa-icon>
+            Doctors
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/doctorss"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="hover:underline transition-all text-white flex items-center gap-2"
+          >
+            <fa-icon [icon]="faUserInjured" class="text-white"></fa-icon>
+            Patients
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+<!-- Sidebar for large screens, fixed to the left but below the header -->
+<nav
+  class="hidden lg:flex flex-col gap-0 bg-[#424559] rounded-r-lg p-0 shadow-md min-w-[80px] fixed left-0 z-40"
+  style="top: 64px; height: calc(100vh - 64px - 72px); border-right: 1px solid #2d2f3a; width: 96px;"
+>
+  <a
+    routerLink="/"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="hover:underline transition-all text-white flex flex-col items-center justify-center gap-2 w-full"
+    style="background: none; border-radius: 0; border-bottom: 1px solid black; display: flex; width: 100%; margin: 0; padding: 0; height: 96px; aspect-ratio: 1 / 1; margin-top: 24px;"
+  >
+    <fa-icon [icon]="faHome" class="text-white text-2xl"></fa-icon>
+    <span class="text-xs">Home</span>
+  </a>
+  <a
+    routerLink="/doctors"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="hover:underline transition-all text-white flex flex-col items-center justify-center gap-2 w-full"
+    style="background: none; border-radius: 0; border-bottom: 1px solid black; display: flex; width: 100%; margin: 0; padding: 0; height: 96px; aspect-ratio: 1 / 1;"
+  >
+    <fa-icon [icon]="faUserMd" class="text-white text-2xl"></fa-icon>
+    <span class="text-xs">Doctors</span>
+  </a>
+  <a
+    routerLink="/patients"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="hover:underline transition-all text-white flex flex-col items-center justify-center gap-2 w-full"
+    style="background: none; border-radius: 0; border-bottom: 1px solid black; display: flex; width: 100%; margin: 0; padding: 0; height: 96px; aspect-ratio: 1 / 1;"
+  >
+    <fa-icon [icon]="faUserInjured" class="text-white text-2xl"></fa-icon>
+    <span class="text-xs">Patients</span>
+  </a>
+</nav>
+<!-- Add this style block to offset main content for the sidebar on large screens -->
+<style>
+  @media (min-width: 1024px) {
+    main, .main-content, .page-content, .mt-28.pb-10.px-6 > .mx-auto.max-w-7xl {
+      margin-left: 96px !important;
+    }
+    body {
+      padding-left: 80px !important;
+    }
+  }
+</style>

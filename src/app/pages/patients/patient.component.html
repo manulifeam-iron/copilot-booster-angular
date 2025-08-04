@@ -1,0 +1,23 @@
+<div class="mt-28 pb-10 px-6 lg:ml-24 w-full">
+  <div class="w-full">
+    <span class="text-3xl font-bold mb-6 block">Patient List</span>
+    @if (isLoading()) {
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 w-full"
+    >
+      @for (item of [1,2,3,4]; track item) {
+      <app-card-skeleton />
+      }
+    </div>
+    } @else {
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 w-full"
+    >
+      @for (patient of patients.value(); track patient.id) {
+      <app-card [patient]="patient" />
+      }
+    </div>
+    }
+  </div>
+</div>
+<app-footer />

@@ -1,0 +1,28 @@
+<div
+  class="card hover:bg-base-200 transition-all bg-base-100 w-full h-full shadow-sm"
+>
+  <div class="card-body">
+    <h2 class="card-title">
+      {{ doctor()?.name || patient()?.name }}
+    </h2>
+    <div
+      style="width: 50px; height:4px; background:#00A758; border-radius:2px; margin-bottom:8px;"
+    ></div>
+    <p class="line-clamp-3">
+      {{ doctor() ? doctor()?.specialty : '' }}
+    </p>
+    @if (doctor()) {
+    <div class="card-actions mt-4 w-full">
+      <div class="flex items-center gap-x-2 w-full justify-between">
+        <div class="flex items-center gap-x-2">
+          <div class="tooltip" data-tip="View Detail">
+            <button (click)="onClickNavigate()" class="btn btn-soft btn-sm">
+              <fa-icon [icon]="faEye"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
