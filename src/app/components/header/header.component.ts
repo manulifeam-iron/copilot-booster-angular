@@ -9,7 +9,8 @@ import {
   faBars,
   faHome,
   faUserMd,
-  faUserInjured
+  faUserInjured,
+  faCalendarAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -25,7 +26,6 @@ import {
 })
 export class HeaderComponent {
 
-
   faCartShopping = faCartShopping;
   faShoppingBag = faShoppingBag;
   faHamburger = faHamburger;
@@ -34,4 +34,5 @@ export class HeaderComponent {
   faHome = faHome;
   faUserMd = faUserMd;
   faUserInjured = faUserInjured;
+  faCalendarAlt = faCalendarAlt;
 }

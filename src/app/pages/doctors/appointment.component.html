@@ -1,0 +1,149 @@
+<div class="mt-28 pb-10 px-6 lg:ml-24 w-full">
+  <div class="w-full">
+    <!-- Header with title and Create button -->
+    <div class="flex justify-between items-center mb-6">
+      <span class="text-3xl font-bold">Appointments</span>
+      <button 
+        (click)="openModal()" 
+        class="btn btn-primary">
+        + Create Appointment
+      </button>
+    </div>
+    @if (isLoading()) {
+      <div class="flex justify-center items-center h-64">
+        <div class="loading loading-spinner loading-lg"></div>
+      </div>
+    } @else {
+      <div class="overflow-x-auto">
+        <table class="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th class="text-base font-semibold">Doctor</th>
+              <th class="text-base font-semibold">Patient</th>
+              <th class="text-base font-semibold">Date & Time</th>
+              <th class="text-base font-semibold">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (appointment of appointments.value(); track appointment.id) {              <tr>
+                <td class="font-medium">{{ appointment.doctor }}</td>
+                <td>{{ appointment.patient }}</td>
+                <td>{{ appointment.scheduledTime | date:'MMMM dd, yyyy h:mm a' }}</td>
+                <td>{{ appointment.notes }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>      </div>
+    }
+  </div>
+
+  <!-- Modal for creating new appointment -->
+  @if (isModalOpen()) {
+    <div class="modal modal-open">
+      <div class="modal-box w-11/12 max-w-2xl">
+        <h3 class="font-bold text-lg mb-4">Create New Appointment</h3>
+        
+        <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+          <!-- Doctor Selection -->
+          <div class="form-control w-full mb-4">
+            <label class="label">
+              <span class="label-text">Select Doctor</span>
+            </label>
+            <select 
+              formControlName="doctorId" 
+              class="select select-bordered w-full"
+              [class.select-error]="appointmentForm.get('doctorId')?.invalid && appointmentForm.get('doctorId')?.touched">
+              <option value="">Choose a doctor...</option>
+              @for (doctor of doctors.value(); track doctor.id) {
+                <option [value]="doctor.id">{{ doctor.name }} - {{ doctor.specialty }}</option>
+              }
+            </select>
+            @if (appointmentForm.get('doctorId')?.invalid && appointmentForm.get('doctorId')?.touched) {
+              <label class="label">
+                <span class="label-text-alt text-error">Doctor is required</span>
+              </label>
+            }
+          </div>
+
+          <!-- Patient Selection -->
+          <div class="form-control w-full mb-4">
+            <label class="label">
+              <span class="label-text">Select Patient</span>
+            </label>
+            <select 
+              formControlName="patientId" 
+              class="select select-bordered w-full"
+              [class.select-error]="appointmentForm.get('patientId')?.invalid && appointmentForm.get('patientId')?.touched">
+              <option value="">Choose a patient...</option>
+              @for (patient of patients.value(); track patient.id) {
+                <option [value]="patient.id">{{ patient.name }}</option>
+              }
+            </select>
+            @if (appointmentForm.get('patientId')?.invalid && appointmentForm.get('patientId')?.touched) {
+              <label class="label">
+                <span class="label-text-alt text-error">Patient is required</span>
+              </label>
+            }
+          </div>
+
+          <!-- Date and Time -->
+          <div class="form-control w-full mb-4">
+            <label class="label">
+              <span class="label-text">Date and Time</span>
+            </label>
+            <input 
+              type="datetime-local" 
+              formControlName="scheduledTime"
+              class="input input-bordered w-full"
+              [class.input-error]="appointmentForm.get('scheduledTime')?.invalid && appointmentForm.get('scheduledTime')?.touched">
+            @if (appointmentForm.get('scheduledTime')?.invalid && appointmentForm.get('scheduledTime')?.touched) {
+              <label class="label">
+                <span class="label-text-alt text-error">Date and time is required</span>
+              </label>
+            }
+          </div>
+
+          <!-- Notes -->
+          <div class="form-control w-full mb-6">
+            <label class="label">
+              <span class="label-text">Notes (Primary Complaint)</span>
+            </label>
+            <textarea 
+              formControlName="notes"
+              class="textarea textarea-bordered h-24"
+              placeholder="Enter notes about the primary complaint..."
+              [class.textarea-error]="appointmentForm.get('notes')?.invalid && appointmentForm.get('notes')?.touched"></textarea>
+            @if (appointmentForm.get('notes')?.invalid && appointmentForm.get('notes')?.touched) {
+              <label class="label">
+                <span class="label-text-alt text-error">Notes are required</span>
+              </label>
+            }
+          </div>
+
+          <!-- Modal Actions -->
+          <div class="modal-action">
+            <button 
+              type="button" 
+              (click)="closeModal()" 
+              class="btn btn-ghost"
+              [disabled]="isSubmitting()">
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              class="btn btn-primary"
+              [disabled]="appointmentForm.invalid || isSubmitting()">
+              @if (isSubmitting()) {
+                <span class="loading loading-spinner loading-sm"></span>
+                Creating...
+              } @else {
+                Create Appointment
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+</div>
+<app-footer />

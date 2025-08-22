@@ -42,16 +42,26 @@
             <fa-icon [icon]="faUserMd" class="text-white"></fa-icon>
             Doctors
           </a>
-        </li>
-        <li>
+        </li>        <li>
           <a
-            routerLink="/doctorss"
+            routerLink="/patients"
             routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"
             class="hover:underline transition-all text-white flex items-center gap-2"
           >
             <fa-icon [icon]="faUserInjured" class="text-white"></fa-icon>
             Patients
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/appointments"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="hover:underline transition-all text-white flex items-center gap-2"
+          >
+            <fa-icon [icon]="faCalendarAlt" class="text-white"></fa-icon>
+            Appointments
           </a>
         </li>
       </ul>
@@ -82,8 +92,7 @@
   >
     <fa-icon [icon]="faUserMd" class="text-white text-2xl"></fa-icon>
     <span class="text-xs">Doctors</span>
-  </a>
-  <a
+  </a>  <a
     routerLink="/patients"
     routerLinkActive="active-link"
     [routerLinkActiveOptions]="{ exact: true }"
@@ -92,6 +101,16 @@
   >
     <fa-icon [icon]="faUserInjured" class="text-white text-2xl"></fa-icon>
     <span class="text-xs">Patients</span>
+  </a>
+  <a
+    routerLink="/appointments"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="hover:underline transition-all text-white flex flex-col items-center justify-center gap-2 w-full"
+    style="background: none; border-radius: 0; border-bottom: 1px solid black; display: flex; width: 100%; margin: 0; padding: 0; height: 96px; aspect-ratio: 1 / 1;"
+  >
+    <fa-icon [icon]="faCalendarAlt" class="text-white text-2xl"></fa-icon>
+    <span class="text-xs">Appointments</span>
   </a>
 </nav>
 <!-- Add this style block to offset main content for the sidebar on large screens -->
